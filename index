@@ -1,0 +1,835 @@
+https://github.com/sankalpsingam/Adwaita-Rakhi-
+
+
+
+I want to host this html and deploy the webpage on github pages
+
+
+
+this is the code for it
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Happy Raksha Bandhan</title>
+
+<meta property="og:title" content="Happy Raksha Bandhan">
+
+<meta property="og:description" content="Tap your name and tie your rakhi.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+  :root{
+
+    --bg:#0C0A1E; --cream:#FDF6E8;
+
+    --accent:#F2A03D; --accent2:#E14B5A;
+
+    --display:"Cormorant Garamond",Georgia,serif;
+
+    --body:"Karla",Arial,sans-serif;
+
+  }
+
+  *{box-sizing:border-box}
+
+  html,body{margin:0;padding:0}
+
+  body{
+
+    background:
+
+      radial-gradient(90% 55% at 50% 12%, color-mix(in srgb,var(--accent) 12%, transparent) 0%, transparent 70%),
+
+      radial-gradient(120% 80% at 50% 0%, #241a4f 0%, var(--bg) 58%, #070517 100%);
+
+    color:var(--cream); font-family:var(--body);
+
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+
+    -webkit-tap-highlight-color:transparent;
+
+    transition:background .8s ease;
+
+  }
+
+  .wrap{max-width:520px;margin:0 auto;padding:30px 20px 44px}
+
+  .hidden{display:none}
+
+
+
+  /* ---------- name screen ---------- */
+
+  .eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(38px,12vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-.01em}
+
+  h1 em{font-style:italic}
+
+  .sub{margin:0;color:#b8b0d8;font-size:14.5px}
+
+  .names{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .name-btn{
+
+    background:linear-gradient(170deg,rgba(253,246,232,.07),rgba(253,246,232,.02));
+
+    border:1px solid rgba(255,216,136,.2); border-radius:22px; padding:14px 8px 15px;
+
+    color:var(--cream); font-family:var(--display); font-size:21px; font-weight:600;
+
+    cursor:pointer; display:grid; justify-items:center; gap:4px;
+
+    transition:transform .2s ease,background .2s ease,border-color .2s ease;
+
+  }
+
+  .name-btn:hover,.name-btn:focus-visible{background:rgba(255,216,136,.1);border-color:#FFD888;transform:translateY(-3px)}
+
+
+
+  /* ---------- ceremony ---------- */
+
+  #stageWrap{text-align:center}
+
+  .whose{font-family:var(--display);font-style:italic;font-weight:600;
+
+    font-size:clamp(34px,11vw,46px);line-height:1;margin:0;color:var(--accent)}
+
+  .stage{position:relative;display:grid;place-items:center;margin-top:4px}
+
+  .stage svg{width:100%;height:auto;max-height:56vh;overflow:visible;display:block}
+
+  .scene{
+
+    position:absolute;inset:0;width:100%!important;height:100%!important;
+
+    pointer-events:none;opacity:0;transition:opacity 1.4s ease;
+
+    z-index:0;
+
+  }
+
+  .s1 .scene{opacity:.16}
+
+  .tied .scene{opacity:.28}
+
+  .stage > svg:last-of-type{position:relative;z-index:1}
+
+
+
+  #thread-base,#thread-braid{fill:none;stroke-linecap:round}
+
+  #thread-base{stroke:var(--accent2);stroke-width:7}
+
+  #thread-braid{stroke:#FFE9A8;stroke-width:2.4;opacity:.85;stroke-dasharray:2 9}
+
+
+
+  /* rakhi assembly */
+
+  .petal, .bead, .core, .base, .sparkle, .tassel{
+
+    transform-box:fill-box; opacity:0;
+
+    transition:transform .7s cubic-bezier(.2,1.5,.35,1), opacity .4s ease;
+
+  }
+
+  .petal{transform-origin:50% 100%;transform:scaleY(.05) scaleX(.5)}
+
+  .bead{transform-origin:50% 50%;transform:scale(0)}
+
+  .base{transform-origin:50% 50%;transform:scale(.3)}
+
+  .core{transform-origin:50% 50%;transform:scale(.2) rotate(-90deg)}
+
+  .tassel{transform-origin:50% 0;transform:scaleY(.1)}
+
+  .sparkle{transform-origin:50% 50%;transform:scale(0)}
+
+
+
+  .s1 .base,.s1 .tassel{opacity:1;transform:none}
+
+  .s2 .outer .petal{opacity:1;transform:none}
+
+  .s3 .inner .petal{opacity:1;transform:none}
+
+  .s3 .bead{opacity:1;transform:none}
+
+  .s4 .core{opacity:1;transform:none}
+
+  .s4 .sparkle{opacity:1;transform:none;animation:tw 2.6s ease-in-out infinite}
+
+  @keyframes tw{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(40deg)}}
+
+
+
+  .tied #rakhi{animation:settle 5.5s ease-in-out .9s infinite}
+
+  @keyframes settle{0%,100%{transform:translate(0,-96px) rotate(-2.4deg)}50%{transform:translate(0,-96px) rotate(2.4deg)}}
+
+  .tied .inner{animation:drift 30s linear infinite}
+
+  @keyframes drift{to{transform:rotate(360deg)}}
+
+  .tied .tasselSway{animation:tsway 4.4s ease-in-out infinite}
+
+  @keyframes tsway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+
+
+
+  /* hold button */
+
+  .holder{margin-top:6px;display:grid;place-items:center;gap:12px}
+
+  .hold-btn{
+
+    position:relative;overflow:hidden;border:0;border-radius:999px;
+
+    padding:17px 34px;min-width:230px;
+
+    background:rgba(253,246,232,.08);
+
+    border:1px solid color-mix(in srgb,var(--accent) 60%,transparent);
+
+    color:var(--cream);font-family:var(--body);font-size:15.5px;font-weight:700;letter-spacing:.02em;
+
+    cursor:pointer;touch-action:none;user-select:none;
+
+    transition:transform .15s ease, opacity .4s ease;
+
+  }
+
+  .hold-btn:active{transform:scale(.97)}
+
+  .hold-btn .fill{
+
+    position:absolute;inset:0;transform-origin:left;transform:scaleX(0);
+
+    background:linear-gradient(100deg,var(--accent2),var(--accent));opacity:.9;
+
+  }
+
+  .hold-btn span.txt{position:relative;z-index:2;mix-blend-mode:normal}
+
+  .hold-btn.gone{opacity:0;pointer-events:none;height:0;padding:0;border:0;margin:0}
+
+  .hint{font-size:13.5px;color:#a49bcd;margin:0;min-height:19px}
+
+
+
+  /* wish */
+
+  .wish{margin-top:4px}
+
+  .wish .greet, .wish .love, .wish .row{opacity:0;transform:translateY(14px)}
+
+  .wish.on .greet{opacity:1;transform:none;transition:opacity .8s ease,transform .8s ease}
+
+  .wish.on .love{opacity:1;transform:none;transition:opacity .8s ease .25s,transform .8s ease .25s}
+
+  .wish.on .row{opacity:1;transform:none;transition:opacity .8s ease .5s,transform .8s ease .5s}
+
+  .greet{font-family:var(--display);font-weight:600;font-size:clamp(28px,8.4vw,36px);line-height:1.08;margin:0 0 8px}
+
+  .greet i{font-style:italic;color:var(--accent)}
+
+  .love{font-size:16.5px;line-height:1.6;color:#e9e2ff;margin:0}
+
+  .row{display:flex;gap:10px;margin-top:24px}
+
+  .ghost{flex:1;text-align:center;text-decoration:none;padding:14px;border-radius:999px;
+
+    font-size:14.5px;font-weight:700;font-family:var(--body);cursor:pointer;
+
+    border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);color:var(--accent);background:transparent}
+
+  .ghost.solid{background:linear-gradient(100deg,var(--accent2),var(--accent));border:0;color:#20101a}
+
+  footer{margin-top:26px;text-align:center;font-family:var(--display);font-size:16px;color:#9a92c4}
+
+
+
+  .bit{position:fixed;top:-26px;width:9px;height:9px;pointer-events:none;z-index:6;border-radius:60% 0 60% 0}
+
+  @keyframes fall{0%{transform:translateY(-26px) rotate(0);opacity:1}100%{transform:translateY(106vh) rotate(620deg);opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+
+
+  <section id="gate">
+
+    <p class="eyebrow" id="fromline">Raksha Bandhan</p>
+
+    <h1>A thread <em>for you.</em></h1>
+
+    <p class="sub">Tap your name.</p>
+
+    <div class="names" id="names"></div>
+
+    <footer id="foot1"></footer>
+
+  </section>
+
+
+
+  <section id="stageWrap" class="hidden">
+
+    <p class="eyebrow">For</p>
+
+    <h2 class="whose" id="whose"></h2>
+
+    <div class="stage" id="stage">
+
+      <svg class="scene" id="scene" viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+
+      <svg id="svg" viewBox="-150 -200 300 380" aria-hidden="true">
+
+        <defs>
+
+          <radialGradient id="gold" cx="34%" cy="28%">
+
+            <stop offset="0%" stop-color="#FFF7D6"/><stop offset="52%" stop-color="#FFD268"/><stop offset="100%" stop-color="#B87A22"/>
+
+          </radialGradient>
+
+          <radialGradient id="glow" cx="50%" cy="50%">
+
+            <stop offset="0%" stop-color="#FFE9A8" stop-opacity=".35"/><stop offset="100%" stop-color="#FFE9A8" stop-opacity="0"/>
+
+          </radialGradient>
+
+        </defs>
+
+        <circle cx="0" cy="-96" r="120" fill="url(#glow)"/>
+
+        <path id="thread-base"  d="M0,-96 C62,-96 104,-52 104,4 C104,62 60,106 0,106 C-60,106 -104,62 -104,4 C-104,-52 -62,-96 0,-96"/>
+
+        <path id="thread-braid" d="M0,-96 C62,-96 104,-52 104,4 C104,62 60,106 0,106 C-60,106 -104,62 -104,4 C-104,-52 -62,-96 0,-96"/>
+
+        <g id="rakhi" transform="translate(0,-96)"></g>
+
+      </svg>
+
+    </div>
+
+
+
+    <div class="holder">
+
+      <button class="hold-btn" id="hold"><span class="fill" id="fill"></span><span class="txt" id="holdtxt">Hold to tie the rakhi</span></button>
+
+      <p class="hint" id="hint">Press and keep holding</p>
+
+    </div>
+
+
+
+    <div class="wish" id="wish">
+
+      <h2 class="greet" id="greet"></h2>
+
+      <p class="love" id="love"></p>
+
+      <div class="row">
+
+        <a class="ghost solid" id="reply" href="#">Say thanks</a>
+
+        <button class="ghost" id="back">Back</button>
+
+      </div>
+
+    </div>
+
+    <footer id="foot2"></footer>
+
+  </section>
+
+</div>
+
+
+
+<script>
+
+/* ============ 1. EDIT: you ============ */
+
+const FROM = "Adwaita";
+
+const MY_NUMBER = "61400000000";       // your WhatsApp number: country code, no + or spaces
+
+
+
+/* ============ 2. EDIT: the words ============ */
+
+const GREET = n => "Happy Raksha Bandhan,<br><i>" + n + "</i>";
+
+const LOVE  = "Love you deeply. Always there for you.";
+
+
+
+/* ============ 3. EDIT: your brothers ============ */
+
+/* each one gets his own colours and his own petal shape */
+
+const BROTHERS = [
+
+  {name:"Bhushan",    art:"steth",  accent:"#F2A03D", accent2:"#D2452F", petals:10, shape:"lotus"},
+
+  {name:"Yash",       art:"flask",  accent:"#7FD8C8", accent2:"#1F7A6B", petals:8,  shape:"round"},
+
+  {name:"Chirag",     art:"car",    accent:"#C6B2F5", accent2:"#5B3FBF", petals:12, shape:"point"},
+
+  {name:"Mohit",      art:"tennis", accent:"#F5C542", accent2:"#B0451F", petals:6,  shape:"lotus"},
+
+  {name:"Prathamesh", art:"pad",    accent:"#F7A9C4", accent2:"#B3255F", petals:10, shape:"tear"},
+
+  {name:"Krishna",    art:"drum",   accent:"#9FD98A", accent2:"#2F7C4F", petals:8,  shape:"point"}
+
+];
+
+
+
+/* line-art icons, drawn to sit in a 34 x 34 box around 0,0 */
+
+const ICONS = {
+
+  steth:'<path d="M-10,-15 L-10,-9 A10,10 0 0 0 6,-9 L6,-15"/><path d="M-2,-1 L-2,5 A5,5 0 0 0 7,8"/><circle cx="9" cy="11" r="4.5"/><circle cx="-10" cy="-16" r="1.8"/><circle cx="6" cy="-16" r="1.8"/>',
+
+  flask:'<path d="M-6,-15 L-6,-5 L-12,8 A5,5 0 0 0 -7,15 L7,15 A5,5 0 0 0 12,8 L6,-5 L6,-15"/><path d="M-8,-15 L8,-15"/><path d="M-9,4 L9,4"/><circle cx="-2" cy="9" r="1.7"/><circle cx="4" cy="11" r="1.2"/>',
+
+  car:'<path d="M-15,5 Q-13,-2 -6,-3 L-2,-9 Q2,-12 7,-9 L11,-3 Q16,-2 16,5"/><path d="M-15,5 L16,5"/><path d="M-1,-3 L0,-9"/><circle cx="-8" cy="8" r="4"/><circle cx="9" cy="8" r="4"/>',
+
+  tennis:'<g transform="rotate(-28)"><ellipse cx="-1" cy="-6" rx="9" ry="11"/><path d="M-1,-17 L-1,5 M-10,-6 L8,-6"/><path d="M-1,5 L-1,15"/></g><circle cx="9" cy="10" r="5"/><path d="M4.5,7.5 Q9,10 4.5,12.5"/>',
+
+  pad:'<rect x="-16" y="-8" width="32" height="17" rx="8.5"/><path d="M-11,0.5 L-5,0.5 M-8,-2.5 L-8,3.5"/><circle cx="6" cy="-2" r="2.4"/><circle cx="11" cy="3" r="2.4"/>',
+
+  drum:'<ellipse cx="0" cy="-6" rx="13" ry="4.5"/><path d="M-13,-6 L-13,6 Q0,12 13,6 L13,-6"/><path d="M-9,-3 L-4,6 L1,-3 L6,6 L11,-2"/><path d="M-11,-16 L-4,-9 M11,-16 L4,-9"/>'
+
+};
+
+
+
+/* ============ the rakhi ============ */
+
+const SHAPES = {
+
+  lotus:{o:"M0,-12 C19,-27 19,-55 0,-64 C-19,-55 -19,-27 0,-12 Z", i:"M0,-8 C12,-19 12,-38 0,-44 C-12,-38 -12,-19 0,-8 Z"},
+
+  round:{o:"M0,-16 C23,-24 23,-52 0,-60 C-23,-52 -23,-24 0,-16 Z", i:"M0,-10 C15,-17 15,-36 0,-42 C-15,-36 -15,-17 0,-10 Z"},
+
+  point:{o:"M0,-10 C13,-32 9,-54 0,-68 C-9,-54 -13,-32 0,-10 Z", i:"M0,-7 C9,-22 6,-38 0,-47 C-6,-38 -9,-22 0,-7 Z"},
+
+  tear :{o:"M0,-14 C21,-25 16,-52 0,-63 C-16,-52 -21,-25 0,-14 Z", i:"M0,-9 C14,-18 10,-37 0,-44 C-10,-37 -14,-18 0,-9 Z"}
+
+};
+
+
+
+function buildRakhi(b){
+
+  const sh = SHAPES[b.shape] || SHAPES.lotus, n = b.petals;
+
+  let s = '<defs><radialGradient id="gold" cx="34%" cy="28%">'+
+
+          '<stop offset="0%" stop-color="#FFF7D6"/><stop offset="52%" stop-color="#FFD268"/><stop offset="100%" stop-color="#B87A22"/>'+
+
+          '</radialGradient></defs>';
+
+
+
+  /* silk ends */
+
+  s += '<g class="tasselSway">';
+
+  [[-16,1],[16,-1]].forEach(([x,f],k)=>{
+
+    s += '<g class="tassel" style="transition-delay:'+(60+k*70)+'ms">'+
+
+         '<path d="M'+x+',30 C'+(x+10*f)+',66 '+(x-6*f)+',96 '+(x+8*f)+',126" stroke="'+b.accent2+'" stroke-width="3.6" fill="none" stroke-linecap="round"/>'+
+
+         '<circle cx="'+(x+8*f)+'" cy="130" r="5.4" fill="url(#gold)"/></g>';
+
+  });
+
+  s += '</g>';
+
+
+
+  /* silk base */
+
+  s += '<circle class="base" r="58" fill="'+b.accent2+'" opacity="1" style="opacity:0"/>';
+
+
+
+  /* outer petals */
+
+  s += '<g class="outer" fill="'+b.accent+'">';
+
+  for(let i=0;i<n;i++)
+
+    s += '<g transform="rotate('+(i*360/n)+')"><path class="petal" style="transition-delay:'+(i*55)+'ms" d="'+sh.o+'"/></g>';
+
+  s += '</g>';
+
+
+
+  /* inner petals */
+
+  s += '<g class="inner" fill="'+b.accent2+'" style="transform-origin:0 0">';
+
+  for(let i=0;i<n;i++)
+
+    s += '<g transform="rotate('+(i*360/n + 180/n)+')"><path class="petal" style="transition-delay:'+(i*45)+'ms" d="'+sh.i+'"/></g>';
+
+  s += '</g>';
+
+
+
+  /* gold beads */
+
+  for(let i=0;i<18;i++){
+
+    const a=i*20*Math.PI/180;
+
+    s += '<circle class="bead" style="transition-delay:'+(i*28)+'ms" cx="'+(Math.cos(a)*78).toFixed(1)+'" cy="'+(Math.sin(a)*78).toFixed(1)+'" r="3.6" fill="url(#gold)"/>';
+
+  }
+
+
+
+  /* gold centre with his icon */
+
+  s += '<g class="core">';
+
+  s += '<circle r="34" fill="url(#gold)"/><circle r="34" fill="none" stroke="#7A4E11" stroke-width="1" opacity=".45"/>';
+
+  for(let i=0;i<14;i++){
+
+    const a=i*(360/14)*Math.PI/180;
+
+    s += '<circle cx="'+(Math.cos(a)*34).toFixed(1)+'" cy="'+(Math.sin(a)*34).toFixed(1)+'" r="2.7" fill="#FFF7D6"/>';
+
+  }
+
+  s += '<circle r="27" fill="#17102F"/><circle r="27" fill="none" stroke="#FFD268" stroke-width="1" opacity=".6"/>';
+
+  s += '<g stroke="#FFD268" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="scale(.85)">'+ICONS[b.art]+'</g>';
+
+  s += '</g>';
+
+
+
+  return s;
+
+}
+
+
+
+/* ============ comic panel: sister tying the rakhi ============ */
+
+function buildScene(b){
+
+  const A=b.accent;
+
+  let s='<defs><pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse">'+
+
+        '<circle cx="2" cy="2" r="1.1" fill="'+A+'" opacity=".55"/></pattern></defs>';
+
+  /* panel + halftone */
+
+  s+='<rect x="8" y="8" width="304" height="204" rx="18" fill="url(#dots)" opacity=".5"/>';
+
+  s+='<rect x="8" y="8" width="304" height="204" rx="18" fill="none" stroke="'+A+'" stroke-width="2"/>';
+
+  /* speed lines behind */
+
+  s+='<g stroke="'+A+'" stroke-width="1.6" opacity=".5">';
+
+  [30,48,66].forEach((y,i)=>s+='<path d="M'+(24+i*8)+','+y+' L'+(92+i*10)+','+(y-6)+'"/>');
+
+  [30,48,66].forEach((y,i)=>s+='<path d="M'+(296-i*8)+','+y+' L'+(228-i*10)+','+(y-6)+'"/>');
+
+  s+='</g>';
+
+
+
+  const g='<g fill="none" stroke="'+A+'" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">';
+
+  /* sister, left, leaning in */
+
+  s+=g+
+
+    '<circle cx="96" cy="86" r="19"/>'+                        /* head */
+
+    '<path d="M96,67 Q78,72 80,96 Q82,112 92,116"/>'+          /* hair */
+
+    '<circle cx="96" cy="62" r="2.6"/>'+                       /* bindi dot above */
+
+    '<path d="M96,105 C88,124 90,160 94,196"/>'+               /* body */
+
+    '<path d="M92,122 C74,146 84,176 88,196"/>'+               /* saree drape */
+
+    '<path d="M100,120 C122,116 146,124 162,134"/>'+           /* reaching arm */
+
+    '<path d="M100,132 C120,132 142,140 156,146"/>'+           /* second arm */
+
+    '</g>';
+
+  /* brother, right, arm out */
+
+  s+=g+
+
+    '<circle cx="226" cy="82" r="20"/>'+                       /* head */
+
+    '<path d="M208,72 Q226,60 244,72"/>'+                      /* hair */
+
+    '<path d="M226,102 C236,122 234,160 230,196"/>'+           /* body */
+
+    '<path d="M220,122 C200,126 180,132 168,138"/>'+           /* extended arm to wrist */
+
+    '<path d="M234,124 C250,136 252,166 246,190"/>'+           /* other arm */
+
+    '</g>';
+
+  /* the thread between their hands */
+
+  s+='<path d="M158,140 C164,133 170,146 176,138" fill="none" stroke="'+A+'" stroke-width="3" stroke-linecap="round"/>';
+
+  s+='<circle cx="167" cy="139" r="6" fill="none" stroke="'+A+'" stroke-width="2.6"/>';
+
+  /* his own thing, sitting in the panel */
+
+  s+='<g transform="translate(274,178) scale(1.5)" stroke="'+A+'" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round">'+ICONS[b.art]+'</g>';
+
+  return s;
+
+}
+
+
+
+/* ============ wiring ============ */
+
+const $=id=>document.getElementById(id);
+
+const svg=$("svg"), stage=$("stage"), base=$("thread-base"), braid=$("thread-braid");
+
+const HOLD_MS=1900;
+
+let cur=0, p=0, holding=false, tied=false, raf=null, last=0, L=0;
+
+
+
+$("fromline").textContent="Raksha Bandhan · from "+FROM;
+
+$("foot1").textContent="— "+FROM;
+
+$("foot2").textContent="— "+FROM;
+
+
+
+BROTHERS.forEach((b,i)=>{
+
+  const btn=document.createElement("button");
+
+  btn.className="name-btn";
+
+  btn.innerHTML='<svg viewBox="-130 -130 260 260" width="66" height="66">'+buildRakhi(b)+'</svg>'+b.name;
+
+  btn.onclick=()=>open(i);
+
+  const mini=btn.querySelector("svg");
+
+  requestAnimationFrame(()=>mini.classList.add("s1","s2","s3","s4"));
+
+  $("names").appendChild(btn);
+
+});
+
+
+
+function open(i){
+
+  const b=BROTHERS[i]; cur=i; p=0; tied=false; holding=false;
+
+  const r=document.documentElement.style;
+
+  r.setProperty("--accent",b.accent); r.setProperty("--accent2",b.accent2);
+
+  $("whose").textContent=b.name;
+
+  $("scene").innerHTML=buildScene(b);
+
+  $("rakhi").innerHTML=buildRakhi(b);
+
+  stage.classList.remove("tied","s1","s2","s3","s4");
+
+  L=base.getTotalLength();
+
+  [base,braid].forEach(el=>{ el.style.strokeDasharray=L; el.style.strokeDashoffset=L; });
+
+  $("fill").style.transform="scaleX(0)";
+
+  $("hold").classList.remove("gone");
+
+  $("holdtxt").textContent="Hold to tie the rakhi";
+
+  $("hint").textContent="Press and keep holding";
+
+  $("greet").innerHTML=""; $("love").textContent="";
+
+  $("wish").classList.remove("on");
+
+  $("reply").href="https://wa.me/"+MY_NUMBER+"?text="+encodeURIComponent("Rakhi tied \u{1F9F5} thank you "+FROM);
+
+  $("gate").classList.add("hidden"); $("stageWrap").classList.remove("hidden");
+
+  window.scrollTo(0,0);
+
+  last=performance.now(); cancelAnimationFrame(raf); raf=requestAnimationFrame(loop);
+
+}
+
+$("back").onclick=()=>{
+
+  cancelAnimationFrame(raf);
+
+  $("stageWrap").classList.add("hidden"); $("gate").classList.remove("hidden"); window.scrollTo(0,0);
+
+};
+
+
+
+const hb=$("hold");
+
+hb.addEventListener("pointerdown",e=>{ e.preventDefault(); holding=true; hb.setPointerCapture(e.pointerId); });
+
+["pointerup","pointercancel","pointerleave"].forEach(ev=>hb.addEventListener(ev,()=>holding=false));
+
+hb.addEventListener("keydown",e=>{ if(e.key===" "||e.key==="Enter"){e.preventDefault();holding=true;} });
+
+hb.addEventListener("keyup",()=>holding=false);
+
+
+
+function loop(t){
+
+  raf=requestAnimationFrame(loop);
+
+  const dt=Math.min(t-last,50); last=t;
+
+  if(!tied){
+
+    p += holding ? dt/HOLD_MS : -dt/(HOLD_MS*1.6);
+
+    p = Math.max(0, Math.min(1, p));
+
+    render();
+
+    if(p>=1) finish();
+
+    else if(!holding && p>0) $("hint").textContent="Keep holding — don't let go";
+
+    else if(holding) $("hint").textContent = p<.35 ? "Winding the thread…" : p<.7 ? "The rakhi is opening…" : "Almost tied…";
+
+  }
+
+}
+
+function render(){
+
+  [base,braid].forEach(el=>el.style.strokeDashoffset=L*(1-p));
+
+  $("fill").style.transform="scaleX("+p+")";
+
+  toggle("s1", p>0.04); toggle("s2", p>0.22); toggle("s3", p>0.5); toggle("s4", p>0.78);
+
+}
+
+function toggle(c,on){ stage.classList[on?"add":"remove"](c); }
+
+
+
+function finish(){
+
+  tied=true; p=1; render();
+
+  stage.classList.add("tied");
+
+  hb.classList.add("gone"); $("hint").textContent="";
+
+  buzz();
+
+  confetti(BROTHERS[cur]);
+
+  setTimeout(()=>{
+
+    $("greet").innerHTML=GREET(BROTHERS[cur].name);
+
+    $("love").textContent=LOVE;
+
+    $("wish").classList.add("on");
+
+  },600);
+
+}
+
+function buzz(){ try{ navigator.vibrate && navigator.vibrate([18,60,26]); }catch(e){} }
+
+
+
+function confetti(b){
+
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const c=[b.accent,b.accent2,"#FFD268","#FDF6E8"];
+
+  for(let i=0;i<38;i++){
+
+    const d=document.createElement("div");
+
+    d.className="bit";
+
+    d.style.left=Math.random()*100+"vw";
+
+    d.style.background=c[i%c.length];
+
+    d.style.animation="fall "+(3+Math.random()*2.5)+"s linear "+(Math.random()*1.2)+"s forwards";
+
+    document.body.appendChild(d);
+
+    setTimeout(()=>d.remove(),7200);
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
